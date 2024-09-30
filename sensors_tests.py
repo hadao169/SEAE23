@@ -24,8 +24,6 @@ class TestSensors(unittest.TestCase):
     # expects the method to return False, since the limits are
     # incorrect.
     def test_check_limits2(self):
-        # pass
-        # TODO: implement the actual test case code
         limits = [22, 18]
         result = sensors_main.check_limits(limits)
         self.assertTrue(result, "Function does not work properly with the incorrect limits")
@@ -35,8 +33,6 @@ class TestSensors(unittest.TestCase):
     # TODO: Implement Test case test_check_limits3 (UT3) according to your
     # plan here. 
     def test_check_limits3(self):
-        # pass
-        # TODO: implement the actual test case code
         limits = [22, 22]
         result = sensors_main.check_limits(limits)
         self.assertTrue(result, "Function does not work properly with the incorrect limits")
@@ -45,22 +41,19 @@ class TestSensors(unittest.TestCase):
     # Integration test cases #
     ##########################
 
-    # TODO: Complete test case test_check_limits_integration1 code so
-    # that tests the check_limits function from main function.
-
     # NOTE: Redirect console output to sys.stdout in order to check it
     # from the test cases (here, from the integration test case). Also, use
     # mock_print as a parameter of the test case function.
     @patch('builtins.print')
     def test_check_limits_integration1(self, mock_print):
-        pass
         # 1. set command line parameters, since they are where main gets the
         # min and max temperature settings
-
+        # First parameter is file's name being executed
+        sys.argv = [["sensor_main.py"],[22],[18]]
         # 2. call main with the command line parameters set up
-
+        sensors_main.main()
         # 3. check that the console output is the expected error message
-
+        mock_print.assert_called_with("Error: Incorrect command line arguments")
         # 4. If you want to see what is in mock_print, you can use the following
         # (requires that there is import sys (as this module has) because this
         # test case sets the command line arguments that are in sys.argv)
